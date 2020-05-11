@@ -9,7 +9,9 @@
     "prettier": "eslint --ignore-path ./.eslintignore . --fix",
     "build": "rm -rf ./build && babel -d ./build ./api -s",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "table": "babel-node  ./api/v1/database/createTables"
+    "table:create": "babel-node ./api/v1/database/createTables",
+    "seeds:create": "babel-node  ./api/v1/database/createSeeds",
+    "migrate:seeds": "yarn run table:create && yarn run seeds:create"
   },
   "author": "Caleb Mugisha",
   "license": "ISC",

@@ -73,10 +73,5 @@ describe('Trips', () => {
       expect(res.statusCode).toEqual(404);
       expect(res.body.data).toBeDefined();
     });
-    it('it should fail to complete trip with id 1, (already completed)', async () => {
-      const res = await request(app).put('/api/v1/trips/1/compete');
-      expect(res.statusCode).toEqual(404);
-      expect(res.body.data).toBeDefined();
-    });
   });
 });

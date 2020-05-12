@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --exec babel-node ./api",
-    "test": "cross-env NODE_ENV=test jest   --coverage --testTimeout=10000 --detectOpenHandles --forceExit",
+    "test": "yarn run migrate:seeds && cross-env NODE_ENV=test jest   --coverage --testTimeout=10000 --detectOpenHandles --forceExit",
     "prettier": "eslint --ignore-path ./.eslintignore . --fix",
     "build": "rm -rf ./build && babel -d ./build ./api -s",
     "coveralls": "cat ./coverage/lcov.info | coveralls",

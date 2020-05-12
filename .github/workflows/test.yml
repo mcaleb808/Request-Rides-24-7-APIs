@@ -46,3 +46,7 @@ jobs:
           NODE_ENV: test
           DATABASE_URL: postgres://postgres@localhost:${{ job.services.postgres.ports[5432] }}/tax24
           GOOGLE_MAP_KEY: ${{ secrets.GOOGLE_MAP_KEY }}
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}

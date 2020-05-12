@@ -49,5 +49,5 @@ jobs:
         run: npm test
         env:
           NODE_ENV: test
-          DATABASE_URL: postgres://postgres:Mutangwax23@localhost:5432/taxi24
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432/taxi24
           GOOGLE_MAP_KEY: ${{ secrets.GOOGLE_MAP_KEY }}

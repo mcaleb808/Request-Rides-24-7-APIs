@@ -46,6 +46,8 @@
     "curly": ["error", "multi-line"],
     "import/no-unresolved": [2, { "commonjs": true }],
     "arrow-parens": 0,
-    "object-curly-newline": 0
+    "object-curly-newline": 0,
+    "no-await-in-loop": 0,
+    "no-restricted-syntax": 0
   }
 }

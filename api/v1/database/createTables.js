@@ -23,7 +23,7 @@ const tables = `DROP TYPE IF EXISTS availability, trip_status, invoice_status CA
       CREATE TABLE trips (
       id SERIAL PRIMARY KEY,
       pickup_point VARCHAR(60) NOT NULL,
-      destination VARCHAR(60) NOT NULL UNIQUE,
+      destination VARCHAR(60) NOT NULL,
       status trip_status DEFAULT 'ongoing',
       created_on TIMESTAMP DEFAULT NOW(),
       rider_id INTEGER NOT NULL REFERENCES riders(id),
@@ -31,6 +31,7 @@ const tables = `DROP TYPE IF EXISTS availability, trip_status, invoice_status CA
     );
     CREATE TABLE invoices (
       id SERIAL PRIMARY KEY,
+      amount VARCHAR(60) NOT NULL,
       status invoice_status DEFAULT 'pending',
       created_on TIMESTAMP DEFAULT NOW(),      
       trip_id INTEGER NOT NULL REFERENCES trips(id) ON DELETE CASCADE 

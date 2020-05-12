@@ -14,7 +14,7 @@ jobs:
         image: postgres:10.8
         env:
           POSTGRES_USER: postgres
-          POSTGRES_DB: taxi24test
+          POSTGRES_DB: taxi24
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
@@ -37,9 +37,9 @@ jobs:
         run: npm install
         env:
           NODE_ENV: test
-          TEST_DATABASE_URL: postgres://postgres@localhost:${{ job.services.postgres.ports[5432] }}/taxi24test
+          TEST_DATABASE_URL: postgres://postgres@localhost:${{ job.services.postgres.ports[5432] }}/taxi24
       - name: Run the test suites
         run: npm test
         env:
           NODE_ENV: test
-          TEST_DATABASE_URL: postgres://postgres@localhost:${{ job.services.postgres.ports[5432] }}/taxi24test
+          TEST_DATABASE_URL: postgres://postgres@localhost:${{ job.services.postgres.ports[5432] }}/taxi24

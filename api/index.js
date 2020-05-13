@@ -1,5 +1,7 @@
 import config from 'dotenv';
 import express from 'express';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from '../docs/swagger.json';
 import driversRoutes from './v1/routes/driversRoutes';
 import ridersRoutes from './v1/routes/ridersRoutes';
 import tripsRoutes from './v1/routes/tripsRoutes';
@@ -14,6 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/api/v1/drivers', driversRoutes);
 app.use('/api/v1/riders', ridersRoutes);
 app.use('/api/v1/trips', tripsRoutes);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get('/', (_req, res) => {
   res.status(200).send({

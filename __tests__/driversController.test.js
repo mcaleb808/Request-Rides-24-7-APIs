@@ -1,6 +1,8 @@
 import request from 'supertest';
 import server from '../api';
 
+jest.setTimeout(40000);
+
 describe('Drivers', () => {
   let app;
   beforeAll(() => {
@@ -36,9 +38,13 @@ describe('Drivers', () => {
       expect(res.body.message).toEqual('Available drivers');
     });
     it('it should fetch nearBy drivers', async () => {
-      const res = await request(app).get('/api/v1/drivers/available/remera,kigali');
+      const res = await request(app).get(
+        '/api/v1/drivers/available/Bank of Kigali, Giporoso Branch, Kigali'
+      );
       expect(res.statusCode).toEqual(200);
-      expect(res.body.message).toEqual('Available drivers');
+      expect(res.body.message).toEqual(
+        'Available drivers near Bank of Kigali, Giporoso Branch, Kigali'
+      );
     });
     it('it should fail fetch nearBy drivers, incomplete location', async () => {
       const res = await request(app).get('/api/v1/drivers/available/remera');

@@ -15,7 +15,6 @@ export default class RidersController {
     getAllHelper(rider, res, util, 'Found Rider', `Couldn't find a Rider with the id ${id}`);
   }
 
-  // TODO: complete
   static async getNearByDrivers(req, res) {
     const { location } = req.params;
     const drivers = await Queries.select('*', 'drivers', "status='available'");
@@ -47,7 +46,7 @@ export default class RidersController {
       nearByDrivers,
       res,
       util,
-      'Available drivers',
+      `Available drivers near ${location}`,
       `No driver is currently available near ${location}`
     );
   }

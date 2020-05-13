@@ -16,13 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/api/v1/drivers', driversRoutes);
 app.use('/api/v1/riders', ridersRoutes);
 app.use('/api/v1/trips', tripsRoutes);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
-app.get('/', (_req, res) => {
-  res.status(200).send({
-    message: 'Welcome to Taxi24 APIs'
-  });
-});
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // eslint-disable-next-line no-console
 const server = app.listen(PORT, () => console.log(`The server is running on PORT ${PORT}`));

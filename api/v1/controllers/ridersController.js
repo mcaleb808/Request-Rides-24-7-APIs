@@ -24,22 +24,20 @@ export default class RidersController {
     for (const driver of drivers) {
       const destinations = [driver.location];
       const response = await getDistance(location, destinations);
-      if (response) {
-        const value = response.split(' ')[0];
-        const distance = response.split(' ')[1] === 'm' ? value / 1000 : value;
-        driver.distance = response;
-        if (nearByDrivers.length >= 3) {
-          const max = Math.max(...distanceSet);
-          if (distance < max) {
-            nearByDrivers.splice(nearByDrivers.indexOf(max), 1);
-            nearByDrivers.push(driver);
-            distanceSet.push(distance);
-          }
-          distanceSet.push(distance);
-        } else {
+      const value = response.split(' ')[0];
+      const distance = response.split(' ')[1] === 'm' ? value / 1000 : value;
+      driver.distance = response;
+      if (nearByDrivers.length >= 3) {
+        const max = Math.max(...distanceSet);
+        if (distance < max) {
+          nearByDrivers.splice(nearByDrivers.indexOf(max), 1);
           nearByDrivers.push(driver);
           distanceSet.push(distance);
         }
+        distanceSet.push(distance);
+      } else {
+        nearByDrivers.push(driver);
+        distanceSet.push(distance);
       }
     }
     getAllHelper(

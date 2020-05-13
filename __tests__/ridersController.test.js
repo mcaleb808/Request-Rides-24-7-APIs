@@ -36,5 +36,10 @@ describe('Riders', () => {
         'Available drivers near Bank of Kigali, Giporoso Branch, Kigali'
       );
     });
+    it('it should fetch nearBy drivers', async () => {
+      const res = await request(app).get('/api/v1/riders/nearByDrivers/Gatsata, Kigali');
+      expect(res.statusCode).toEqual(200);
+      expect(res.body.message).toEqual('Available drivers near Gatsata, Kigali');
+    });
   });
 });

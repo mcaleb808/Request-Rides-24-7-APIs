@@ -5,14 +5,14 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --exec babel-node ./api",
-    "start": "yarn run migrate:seeds && babel-node ./api",
-    "test": "yarn run migrate:seeds && cross-env NODE_ENV=test jest   --coverage --testTimeout=10000 --detectOpenHandles --forceExit",
+    "start": "npm run migrate:seeds && babel-node ./api",
+    "test": "npm run migrate:seeds && cross-env NODE_ENV=test jest   --coverage --testTimeout=10000 --detectOpenHandles --forceExit",
     "prettier": "eslint --ignore-path ./.eslintignore . --fix",
     "build": "rm -rf ./build && babel -d ./build ./api -s",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "table:create": "babel-node ./api/v1/database/createTables",
     "seeds:create": "babel-node  ./api/v1/database/createSeeds",
-    "migrate:seeds": "yarn run table:create && yarn run seeds:create"
+    "migrate:seeds": "npm run table:create && npm run seeds:create"
   },
   "author": "Caleb Mugisha",
   "license": "ISC",
@@ -27,9 +27,7 @@
     "nodemon": "^2.0.1",
     "pg": "^7.12.1",
     "swagger-ui-express": "^4.1.4",
-    "uuid": "^8.0.0"
-  },
-  "devDependencies": {
+    "uuid": "^8.0.0",
     "@babel/cli": "^7.6.2",
     "@babel/core": "^7.6.2",
     "@babel/node": "^7.6.2",
@@ -38,7 +36,9 @@
     "@babel/register": "^7.6.2",
     "@babel/runtime": "^7.6.2",
     "babel-eslint": "^10.0.3",
-    "babel-loader": "^8.0.6",
+    "babel-loader": "^8.0.6"
+  },
+  "devDependencies": {
     "coveralls": "^3.0.7",
     "cross-env": "^6.0.3",
     "eslint": "^6.4.0",

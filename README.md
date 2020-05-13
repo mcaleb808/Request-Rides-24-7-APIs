@@ -7,6 +7,8 @@
 
 ---
 
+## Visit [https://taxi-24.herokuapp.com](https://taxi-24.herokuapp.com) to test hosted APIs
+
 ## Pre-requisites
 
 - Install [Node.js](https://nodejs.org/en/download/) if you dont have it installed.

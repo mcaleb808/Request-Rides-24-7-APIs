@@ -27,12 +27,12 @@
     "nodemon": "^2.0.1",
     "pg": "^7.12.1",
     "swagger-ui-express": "^4.1.4",
-    "uuid": "^8.0.0"
-  },
-  "devDependencies": {
+    "uuid": "^8.0.0",
     "@babel/cli": "^7.6.2",
     "@babel/core": "^7.6.2",
-    "@babel/node": "^7.6.2",
+    "@babel/node": "^7.6.2"
+  },
+  "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
     "@babel/register": "^7.6.2",

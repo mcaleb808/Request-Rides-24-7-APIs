@@ -1,6 +1,8 @@
 import request from 'supertest';
 import server from '../api';
 
+jest.setTimeout(40000);
+
 describe('Trips', () => {
   let app;
   beforeAll(() => {
@@ -19,7 +21,7 @@ describe('Trips', () => {
       const res = await request(app)
         .post('/api/v1/trips')
         .send({
-          pickUpPoint: 'remera, kigali',
+          pickUpPoint: 'Giporoso, kigali',
           destination: 'kimironko, kigali',
           riderId: 1,
           driverId: 1
@@ -31,7 +33,7 @@ describe('Trips', () => {
       const res = await request(app)
         .post('/api/v1/trips')
         .send({
-          pickUpPoint: 'remera, kigali',
+          pickUpPoint: 'Giporoso, kigali',
           destination: 'kimironko, kigali',
           riderId: 10,
           driverId: 1
@@ -43,7 +45,7 @@ describe('Trips', () => {
       const res = await request(app)
         .post('/api/v1/trips')
         .send({
-          pickUpPoint: 'remera, kigali',
+          pickUpPoint: 'Giporoso, kigali',
           destination: 'kimironko, kigali',
           riderId: 10,
           driverId: 19
@@ -54,15 +56,11 @@ describe('Trips', () => {
     it('it should fail to create a trip, validation', async () => {
       const res = await request(app)
         .post('/api/v1/trips')
-        .send({
-          pickUpPoi: 'remera, kigali',
-          destination: 'kimironko, kigali',
-          riderId: 10,
-          driverId: 19
-        });
+        .send({});
       expect(res.statusCode).toEqual(400);
       expect(res.body.data).toBeDefined();
     });
+
     it('it should complete a trip with id 1', async () => {
       const res = await request(app).put('/api/v1/trips/1/complete');
       expect(res.statusCode).toEqual(201);

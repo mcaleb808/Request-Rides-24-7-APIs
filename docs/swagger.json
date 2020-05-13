@@ -118,7 +118,7 @@
             "description": "provide a location",
             "type": "string",
             "required": true,
-            "example": "Remera, Kigali"
+            "example": "Giporoso, Kigali"
           }
         ],
         "responses": {
@@ -207,7 +207,7 @@
             "description": "provide a location",
             "type": "string",
             "required": true,
-            "example": "Remera, Kigali"
+            "example": "Giporoso, Kigali"
           }
         ],
         "responses": {

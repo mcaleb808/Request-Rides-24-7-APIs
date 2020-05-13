@@ -9,6 +9,7 @@ const getDistance = (origin, destination) => {
     .then(async data => {
       const res = await data.json();
       const { text } = res.rows[0].elements[0].distance;
+      console.log(text);
       return text;
     })
     .catch(err => {

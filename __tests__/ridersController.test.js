@@ -1,6 +1,8 @@
 import request from 'supertest';
 import server from '../api';
 
+jest.setTimeout(40000);
+
 describe('Riders', () => {
   let app;
   beforeAll(() => {
@@ -26,9 +28,13 @@ describe('Riders', () => {
       expect(res.body.message).toEqual('All riders');
     });
     it('it should fetch nearBy drivers', async () => {
-      const res = await request(app).get('/api/v1/riders/nearByDrivers/remera,kigali');
+      const res = await request(app).get(
+        '/api/v1/riders/nearByDrivers/Bank of Kigali, Giporoso Branch, Kigali'
+      );
       expect(res.statusCode).toEqual(200);
-      expect(res.body.message).toEqual('Available drivers');
+      expect(res.body.message).toEqual(
+        'Available drivers near Bank of Kigali, Giporoso Branch, Kigali'
+      );
     });
   });
 });

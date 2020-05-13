@@ -9,7 +9,7 @@ const tables = `DROP TYPE IF EXISTS availability, trip_status, invoice_status CA
       id SERIAL PRIMARY KEY,
       fullname VARCHAR(60) NOT NULL,
       plate_no VARCHAR(20) NOT NULL UNIQUE,
-      location VARCHAR(60) NOT NULL,
+      location VARCHAR(200) NOT NULL,
       phone VARCHAR(20) NOT NULL,
       status availability DEFAULT 'available',
       created_on TIMESTAMP DEFAULT NOW()
@@ -22,8 +22,8 @@ const tables = `DROP TYPE IF EXISTS availability, trip_status, invoice_status CA
     );
       CREATE TABLE trips (
       id SERIAL PRIMARY KEY,
-      pickup_point VARCHAR(60) NOT NULL,
-      destination VARCHAR(60) NOT NULL,
+      pickup_point VARCHAR(200) NOT NULL,
+      destination VARCHAR(200) NOT NULL,
       status trip_status DEFAULT 'ongoing',
       created_on TIMESTAMP DEFAULT NOW(),
       rider_id INTEGER NOT NULL REFERENCES riders(id),

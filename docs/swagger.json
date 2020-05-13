@@ -12,7 +12,7 @@
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host": "taxi-24.herokuapp.com/",
+  "host": "localhost:8000/",
   "basePath": "/",
   "tags": [
     {
@@ -23,7 +23,7 @@
       }
     }
   ],
-  "schemes": ["https, http"],
+  "schemes": ["http"],
   "paths": {
     "api/v1/drivers/": {
       "get": {

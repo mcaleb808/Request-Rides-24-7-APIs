@@ -47,7 +47,7 @@ export default class RidersController {
       nearByDrivers,
       res,
       util,
-      'Available drivers',
+      `Available drivers near ${location}`,
       `No driver is currently available near ${location}`
     );
   }

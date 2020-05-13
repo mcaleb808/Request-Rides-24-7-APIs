@@ -28,7 +28,7 @@ export default class DriversController {
     for (const driver of drivers) {
       const destinations = [driver.location];
       const response = await getDistance(location, destinations);
-      if (response && (response.split(' ')[0] <= 10 || response.split(' ')[1] === 'm')) {
+      if (response && (response.split(' ')[0] <= 3 || response.split(' ')[1] === 'm')) {
         driver.distance = response;
         nearByDrivers.push(driver);
       }
@@ -37,7 +37,7 @@ export default class DriversController {
       nearByDrivers,
       res,
       util,
-      'Available drivers',
+      `Available drivers near ${location}`,
       `No driver is currently available near ${location}`
     );
   }

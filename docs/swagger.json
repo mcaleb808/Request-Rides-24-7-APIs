@@ -1,0 +1,451 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Taxi24 APIs",
+    "termsOfService": "",
+    "contact": {
+      "email": "mcaleb808@gmail.com"
+    },
+    "license": {
+      "name": "Taxi24",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost:8000/",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Taxi24",
+      "description": "This is Taxi 24 APIs documentation",
+      "externalDocs": {
+        "description": "Find out more"
+      }
+    }
+  ],
+  "schemes": ["http"],
+  "paths": {
+    "api/v1/drivers/": {
+      "get": {
+        "tags": ["Drivers"],
+        "summary": "Get a list of drivers",
+        "description": "Returns a list of drivers",
+        "operationId": "all drivers",
+        "produces": ["application/xml", "application/json"],
+        "responses": {
+          "200": {
+            "description": "All drivers",
+            "schema": {
+              "$ref": "#/definitions/Drivers"
+            }
+          },
+          "400": {
+            "description": "Something went wrong, Please try again!"
+          },
+          "404": {
+            "description": "Drivers not found"
+          }
+        }
+      }
+    },
+    "api/v1/drivers/{id}": {
+      "get": {
+        "tags": ["Drivers"],
+        "summary": "Get one driver",
+        "description": "Returns a single driver",
+        "operationId": "Get driver by Id",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "provide the driver id to retrieve",
+            "type": "string",
+            "required": true,
+            "example": "2"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Found Driver",
+            "schema": {
+              "$ref": "#/definitions/Drivers"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Driver not found"
+          }
+        }
+      }
+    },
+    "api/v1/drivers/available": {
+      "get": {
+        "tags": ["Drivers"],
+        "summary": "Get all available drivers",
+        "description": "Returns a list of all available drivers",
+        "operationId": "Get available drivers",
+        "produces": ["application/xml", "application/json"],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Drivers"
+            }
+          },
+          "400": {
+            "description": "Something went wrong, Please try again!"
+          },
+          "404": {
+            "description": "Drivers not found"
+          }
+        }
+      }
+    },
+    "api/v1/drivers/available/{location}": {
+      "get": {
+        "tags": ["Drivers"],
+        "summary": "Get available drivers for a specific location",
+        "description": "Get a list of all available drivers within 3km for a specific location",
+        "operationId": "drivers within 3km",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "location",
+            "description": "provide a location",
+            "type": "string",
+            "required": true,
+            "example": "Remera, Kigali"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Drivers"
+            }
+          },
+          "400": {
+            "description": "Invalid Location supplied"
+          },
+          "404": {
+            "description": "Drivers not found"
+          }
+        }
+      }
+    },
+    "api/v1/riders/": {
+      "get": {
+        "tags": ["Riders"],
+        "summary": "Get a list of riders",
+        "description": "Returns a list of riders",
+        "operationId": "all riders",
+        "produces": ["application/xml", "application/json"],
+        "responses": {
+          "200": {
+            "description": "All riders",
+            "schema": {
+              "$ref": "#/definitions/Drivers"
+            }
+          },
+          "400": {
+            "description": "Something went wrong, Please try again!"
+          },
+          "404": {
+            "description": "Riders not found"
+          }
+        }
+      }
+    },
+    "api/v1/riders/{id}": {
+      "get": {
+        "tags": ["Riders"],
+        "summary": "Get one rider",
+        "description": "Returns a single rider",
+        "operationId": "Get rider by Id",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "provide the rider id",
+            "type": "string",
+            "required": true,
+            "example": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Found Rider",
+            "schema": {
+              "$ref": "#/definitions/Drivers"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Rider not found"
+          }
+        }
+      }
+    },
+    "api/v1/riders/nearByDrivers/{location}": {
+      "get": {
+        "tags": ["Riders"],
+        "summary": "closest drivers",
+        "description": "Get a list of the 3 closest drivers for a specific rider",
+        "operationId": "3 closest drivers",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "location",
+            "description": "provide a location",
+            "type": "string",
+            "required": true,
+            "example": "Remera, Kigali"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Available drivers",
+            "schema": {
+              "$ref": "#/definitions/Drivers"
+            }
+          },
+          "400": {
+            "description": "Invalid Location supplied"
+          },
+          "404": {
+            "description": "Drivers not found"
+          }
+        }
+      }
+    },
+    "api/v1/trips": {
+      "post": {
+        "tags": ["Trips"],
+        "summary": "Create a new Trip request",
+        "description": "Create a new Trip request by assigning a driver to a rider",
+        "operationId": "new Trip",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Create a trip object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Trips"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Trip successfully created",
+            "schema": {
+              "$ref": "#/definitions/Trips"
+            }
+          },
+          "404": {
+            "description": "This driver is currently unavailable, please select a different driver"
+          },
+          "400": {
+            "description": "Make sure provided all the required information"
+          }
+        }
+      }
+    },
+    "api/v1/trips/{id}/complete": {
+      "put": {
+        "tags": ["Trips"],
+        "summary": "Complete a Trip and generate an invoice",
+        "description": "generate an invoice after each trip is completed.",
+        "operationId": "Complete Trip",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "provide an Id for the trip to complete",
+            "type": "string",
+            "required": true,
+            "example": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Trip successfully completed",
+            "schema": {
+              "$ref": "#/definitions/Invoice"
+            }
+          },
+          "404": {
+            "description": "Trip not found"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "api/v1/trips/": {
+      "get": {
+        "tags": ["Trips"],
+        "summary": "Get a list of all active trips",
+        "description": "Returns a list of active trips",
+        "operationId": "active trips",
+        "produces": ["application/xml", "application/json"],
+        "responses": {
+          "200": {
+            "description": "All active trips",
+            "schema": {
+              "$ref": "#/definitions/Trips"
+            }
+          },
+          "400": {
+            "description": "Something went wrong, Please try again!"
+          },
+          "404": {
+            "description": "Trips not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Drivers": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "fullname": {
+          "type": "string",
+          "example": "Mugisha Caleb"
+        },
+        "plate_no": {
+          "type": "string",
+          "example": "RAA qqq B"
+        },
+        "location": {
+          "type": "string",
+          "example": "Kimironko, Kigali"
+        },
+        "phone": {
+          "type": "string",
+          "example": "+267854030503"
+        },
+        "status": {
+          "type": "string",
+          "example": "available"
+        },
+        "created_on": {
+          "type": "date",
+          "example": "12-08-2020"
+        }
+      },
+      "xml": {
+        "name": "Drivers"
+      }
+    },
+    "Riders": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "fullname": {
+          "type": "string",
+          "example": "Mugisha Caleb"
+        },
+        "phone": {
+          "type": "string",
+          "example": "+267854030503"
+        },
+        "created_on": {
+          "type": "date",
+          "example": "12-08-2020"
+        }
+      },
+      "xml": {
+        "name": "Riders"
+      }
+    },
+    "Trips": {
+      "type": "object",
+      "properties": {
+        "pickUpPoint": {
+          "type": "string",
+          "example": "Gisozi, Kigali"
+        },
+        "destination": {
+          "type": "string",
+          "example": "Kibagabaga, Gasabo"
+        },
+        "riderId": {
+          "type": "integer",
+          "example": "3"
+        },
+        "driverId": {
+          "type": "integer",
+          "example": "3"
+        }
+      },
+      "xml": {
+        "name": "Trips"
+      }
+    },
+    "Invoice": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "amount": {
+          "type": "string",
+          "example": "3290 Rwf"
+        },
+        "status": {
+          "type": "string",
+          "example": "paid"
+        },
+        "created_on": {
+          "type": "date",
+          "example": "12-08-2020"
+        },
+        "driver": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "fullname": {
+              "type": "string",
+              "example": "Mugisha Caleb"
+            },
+            "phone": {
+              "type": "string",
+              "example": "+267854030503"
+            },
+            "plate_no": {
+              "type": "string",
+              "example": "RAA qqq B"
+            }
+          }
+        }
+      },
+      "xml": {
+        "name": "Invoice"
+      }
+    }
+  }
+}

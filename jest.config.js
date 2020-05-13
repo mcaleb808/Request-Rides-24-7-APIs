@@ -6,7 +6,7 @@ module.exports = {
   clearMocks: true,
   collectCoverageFrom: [
     'api/**/*.js',
-    '!**/database/**/**',
+    '!**/db/**/**',
     '!**/config/**/**',
     '!**/coverage/**',
     '!**/node_modules/**',

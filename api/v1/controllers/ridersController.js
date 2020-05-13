@@ -1,5 +1,5 @@
 import util from '../utils/utils';
-import Queries from '../database/queries';
+import Queries from '../db/queries';
 import getAllHelper from '../helpers/getAllHelper';
 import getDistance from '../helpers/getDistance';
 

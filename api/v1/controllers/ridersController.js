@@ -1,7 +1,8 @@
 import util from '../utils/utils';
 import Queries from '../db/queries';
 import getAllHelper from '../helpers/getAllHelper';
-import getDistance from '../helpers/getDistance';
+import sortDrivers from '../helpers/sortDrivers';
+import getNearByDrivers from '../helpers/getNearbyDrivers';
 
 export default class RidersController {
   static async getAllRiders(req, res) {
@@ -17,31 +18,10 @@ export default class RidersController {
 
   static async getNearByDrivers(req, res) {
     const { location } = req.params;
-    const drivers = await Queries.select('*', 'drivers', "status='available'");
-
-    const nearByDrivers = [];
-    const distanceSet = [];
-    for (const driver of drivers) {
-      const destinations = [driver.location];
-      const response = await getDistance(location, destinations);
-      const value = response.split(' ')[0];
-      const distance = response.split(' ')[1] === 'm' ? value / 1000 : value;
-      driver.distance = response;
-      if (nearByDrivers.length >= 3) {
-        const max = Math.max(...distanceSet);
-        if (distance < max) {
-          nearByDrivers.splice(nearByDrivers.indexOf(max), 1);
-          nearByDrivers.push(driver);
-          distanceSet.push(distance);
-        }
-        distanceSet.push(distance);
-      } else {
-        nearByDrivers.push(driver);
-        distanceSet.push(distance);
-      }
-    }
+    const drivers = await getNearByDrivers(location);
+    const nearDrivers = await sortDrivers(drivers).slice(0, 3);
     getAllHelper(
-      nearByDrivers,
+      nearDrivers,
       res,
       util,
       `Available drivers near ${location}`,

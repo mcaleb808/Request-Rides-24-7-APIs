@@ -12,7 +12,8 @@ const seeds = `INSERT INTO drivers
         ('Peter Wolf', 'RaD xxa C', 'Directorate-General of Immigration and Emigration, Kigali', '01703448284'),
         ('Jane Smith', 'RAA xxx S', 'University of Tourism, Technology and Business Studies (UTB), Kigali', '017105844'),
         ('Jack Ma', 'RAB wer X', 'UZI Collections, Kigali', '015844430'),
-        ('Gentil Irakoze', 'RAD xxx S', 'Kigali Marriott Hotel', '01702567844');
+        ('Gentil Irakoze', 'RAD xxx S', 'Kigali Marriott Hotel', '01702567844'),
+        ('Murenzi Bruce', 'RAC nnn D', 'Bank of Kigali, Giporoso Branch, Kigali', '012985844');
 
     INSERT INTO riders
         (fullname, phone)

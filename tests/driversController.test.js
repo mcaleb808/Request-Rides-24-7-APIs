@@ -49,7 +49,7 @@ describe('Drivers', () => {
     it('it should fail fetch nearBy drivers, incomplete location', async () => {
       const res = await request(app).get('/api/v1/drivers/available/remera');
       expect(res.statusCode).toEqual(500);
-      expect(res.body.message).toEqual('response.split is not a function');
+      expect(res.body.message).toEqual('driver.distance.split is not a function');
     });
   });
 });

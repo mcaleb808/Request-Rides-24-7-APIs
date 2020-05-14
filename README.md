@@ -2,6 +2,7 @@
 
 ![Test suites](https://github.com/mcaleb808/Taxi-24-APIs/workflows/Test%20suites/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/mcaleb808/Taxi-24-APIs/badge.svg?branch=develop)](https://coveralls.io/github/mcaleb808/Taxi-24-APIs?branch=develop)
+[![Maintainability](https://api.codeclimate.com/v1/badges/7ddc64fc8952ff261134/maintainability)](https://codeclimate.com/github/mcaleb808/Taxi-24-APIs/maintainability)
 
 > Taxi 24 helps to disrupt the taxi industry in Rwanda by providing a white-label solution to the existing taxi companies and hotels.
 

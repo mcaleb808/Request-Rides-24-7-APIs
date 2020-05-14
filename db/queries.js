@@ -1,4 +1,4 @@
-import pool from '../config/dbConfig';
+import pool from '../api/v1/config/dbConfig';
 
 class Queries {
   static async select(columns, table, condition) {

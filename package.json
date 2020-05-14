@@ -10,8 +10,8 @@
     "prettier": "eslint --ignore-path ./.eslintignore . --fix",
     "build": "rm -rf ./build && babel -d ./build ./api -s",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "table:create": "babel-node ./api/v1/db/createTables",
-    "seeds:create": "babel-node  ./api/v1/db/createSeeds",
+    "table:create": "babel-node ./db/createTables",
+    "seeds:create": "babel-node  ./db/createSeeds",
     "migrate:seeds": "npm run table:create && npm run seeds:create"
   },
   "author": "Caleb Mugisha",

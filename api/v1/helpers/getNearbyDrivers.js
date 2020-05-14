@@ -1,4 +1,4 @@
-import Queries from '../db/queries';
+import Queries from '../../../db/queries';
 import getDistance from './getDistance';
 
 const getNearByDrivers = async location => {

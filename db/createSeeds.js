@@ -1,4 +1,4 @@
-import pool from '../config/dbConfig';
+import pool from '../api/v1/config/dbConfig';
 
 const seeds = `INSERT INTO drivers
         (fullname, plate_no, location, phone)

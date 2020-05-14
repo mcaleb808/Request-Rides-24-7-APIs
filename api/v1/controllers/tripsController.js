@@ -1,6 +1,6 @@
 import moment from 'moment';
 import util from '../utils/utils';
-import Queries from '../db/queries';
+import Queries from '../../../db/queries';
 import getAllHelper from '../helpers/getAllHelper';
 import getDistance from '../helpers/getDistance';
 import updateDriverStatus from '../helpers/updateDriverStatus';

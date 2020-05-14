@@ -1,7 +1,8 @@
 import util from '../utils/utils';
-import Queries from '../db/queries';
+import Queries from '../../../db/queries';
 import getAllHelper from '../helpers/getAllHelper';
 import getNearByDrivers from '../helpers/getNearbyDrivers';
+import getOneHelper from '../helpers/getOneHelper';
 
 export default class DriversController {
   static async getAllDrivers(req, res) {
@@ -16,8 +17,7 @@ export default class DriversController {
 
   static async getOneDriver(req, res) {
     const { id } = req.params;
-    const driver = await Queries.select('*', 'drivers', `id=${id}`);
-    getAllHelper(driver, res, util, 'Found Driver', `Couldn't find a Driver with the id ${id}`);
+    await getOneHelper(res, util, id, 'Driver', 'drivers');
   }
 
   static async getNearByDrivers(req, res) {

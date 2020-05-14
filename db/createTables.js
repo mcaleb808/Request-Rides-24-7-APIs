@@ -1,4 +1,4 @@
-import pool from '../config/dbConfig';
+import pool from '../api/v1/config/dbConfig';
 
 const tables = `DROP TYPE IF EXISTS availability, trip_status, invoice_status CASCADE;
     CREATE TYPE availability AS ENUM ('available', 'busy', 'off');

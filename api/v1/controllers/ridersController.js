@@ -1,8 +1,9 @@
 import util from '../utils/utils';
-import Queries from '../db/queries';
+import Queries from '../../../db/queries';
 import getAllHelper from '../helpers/getAllHelper';
 import sortDrivers from '../helpers/sortDrivers';
 import getNearByDrivers from '../helpers/getNearbyDrivers';
+import getOneHelper from '../helpers/getOneHelper';
 
 export default class RidersController {
   static async getAllRiders(req, res) {
@@ -12,8 +13,7 @@ export default class RidersController {
 
   static async getOneRider(req, res) {
     const { id } = req.params;
-    const rider = await Queries.select('*', 'riders', `id=${id}`);
-    getAllHelper(rider, res, util, 'Found Rider', `Couldn't find a Rider with the id ${id}`);
+    await getOneHelper(res, util, id, 'Rider', 'riders');
   }
 
   static async getNearByDrivers(req, res) {

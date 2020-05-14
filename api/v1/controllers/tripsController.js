@@ -3,6 +3,7 @@ import util from '../utils/utils';
 import Queries from '../db/queries';
 import getAllHelper from '../helpers/getAllHelper';
 import getDistance from '../helpers/getDistance';
+import updateDriverStatus from '../helpers/updateDriverStatus';
 
 export default class TripsController {
   static async getAllTrips(req, res) {
@@ -28,13 +29,8 @@ export default class TripsController {
       [pickUpPoint, destination, riderId, driverId, 'ongoing'],
       '*'
     );
-    const updateDriverStatus = await Queries.update(
-      'drivers',
-      "status= 'busy'",
-      `id='${driverId}'`,
-      'fullname, plate_no, phone'
-    );
-    createTrip.assignedDriver = updateDriverStatus;
+    const updatedDriverStatus = await updateDriverStatus('busy', driverId);
+    createTrip.assignedDriver = updatedDriverStatus;
     util.setSuccess(201, 'Trip successfully created', createTrip);
     return util.send(res);
   }
@@ -57,15 +53,10 @@ export default class TripsController {
       '*'
     );
     await Queries.update('trips', "status= 'completed'", `id='${trip[0].id}'`, 'status');
-    const updateDriverStatus = await Queries.update(
-      'drivers',
-      "status= 'available'",
-      `id='${trip[0].driver_id}'`,
-      'fullname, plate_no, phone'
-    );
+    const updatedDriverStatus = await updateDriverStatus('available', trip[0].driver_id);
     util.setSuccess(201, 'Trip successfully completed', {
       Invoice: { ...createInvoice, created_on: moment(createInvoice.created_on).format('LLL') },
-      Driver: updateDriverStatus
+      Driver: updatedDriverStatus
     });
     return util.send(res);
   }
